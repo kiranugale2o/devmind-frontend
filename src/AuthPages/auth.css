@@ -1,0 +1,29 @@
+#singup-form{
+    width: 30%;
+    margin:3% auto;
+    height: 450px;
+    background-color: white;
+    color: black;
+}
+
+#login-form{
+    width: 30%;
+    margin:3% auto;
+    height: 380px;
+    background-color: white;
+    color: black;
+}
+
+
+@media screen and (max-width:600px) {
+    #singup-form{
+        width: 90%;
+        margin:30% auto;
+
+    }
+    #login-form{
+        width: 90%;
+        margin:30% auto;
+
+    }
+}

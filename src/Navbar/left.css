@@ -1,0 +1,54 @@
+#leftbar{
+    background-color: white;
+    color: black;
+    width: 100%;
+}
+a:hover{
+background-color: black;
+color:white;
+font-weight: 600;
+}
+
+p{
+    margin: auto 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#icons{
+    
+    width: 30px;
+    height: 40px;
+}
+@media screen and (max-width:600px) {
+    #leftbar{
+        overflow: hidden;
+        width: 100%;
+       background-color: black;
+       color: white;
+        justify-content: space-between;
+        display: inline-flex;
+    }
+    a{
+        color: gray;
+        width: auto;
+    }
+    #icons{
+        color: gray;
+        font-weight: bold;
+        width: 35px;
+        height: 40px;
+    }
+    #icons:hover{
+        color: white;
+    }
+    a:hover{
+        
+        color:white;
+        font-weight: 600;
+        }
+        
+    p{
+        display: none;
+    }
+}

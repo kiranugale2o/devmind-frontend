@@ -1,0 +1,46 @@
+#postcard{
+    width:45%;
+    margin:10px 40px;
+}
+#userinfo{
+    display:flex;
+    width:100%;
+}
+#userimg{
+width:18%;
+border-color: black;
+height:40px;
+
+}
+.username{
+    font-weight: 500;
+}
+
+.hr{
+    display: none;
+}
+@media screen and (max-width:600px) {
+    #postcard{
+        width:95%;
+        margin:auto;
+        
+    }
+    #userinfo{
+        display:flex;
+        width:100%;
+    }
+    #userimg{
+    width:20%;
+    border-color: black;
+    height:40px;
+    
+    }
+    .username{
+        font-weight: 500;
+    }
+
+    .hr{
+        display: block;
+    }
+    
+}
