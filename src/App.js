@@ -6,58 +6,40 @@ import Navbar from './Navbar/Navbar';
 import {
   BrowserRouter as Router,
   Routes,
+  Switch,
   Route,
   NavLink,
+  useParams,
   Navigate,
+  BrowserRouter,
 } from "react-router-dom";
 import Home from './Component/Home';
 import Post from './Component/Post';
+import FindDeveloper from './Component/FindDeveloper';
+import LeftNavbar from './Navbar/LeftNavbar';
 
 function App() {
+  const pra=useParams();
+  console.log(pra)
   return (
+    <>
+    <Navbar/>
+   <BrowserRouter>
+    <Routes>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/' element={<Home/>}>
+          <Route path='/profile' element={<>profile</>}/>
+          <Route path='/findaa' element={<>find</>}/>
+          <Route path='/postpage' element={<>Post</>}/>
+          <Route path='/activity' element={<>activity</>}/>
+
+      </Route>
+    </Routes>
+    </BrowserRouter>
    
-    <div className="App">
-     <Navbar/>
-     <Router>
-                <Routes>
-                    {/* This route is for home component 
-          with exact path "/", in component props 
-          we passes the imported component*/}
-                    <Route
-                        exact
-                        path="/"
-                        element={<Home/>}
-                    />
- 
-                    {/* This route is for about component 
-          with exact path "/about", in component 
-          props we passes the imported component*/}
-                    <Route
-                        path="/login"
-                        element={<Login/>}
-                    />
- 
-                    {/* This route is for contactus component
-          with exact path "/contactus", in 
-          component props we passes the imported component*/}
-                    <Route
-                        path="/singup"
-                        element={<Singup />}
-                    />
- 
-                    {/* If any route mismatches the upper 
-          route endpoints then, redirect triggers 
-          and redirects app to home component with to="/" */}
-                    {/* <Redirect to="/" /> */}
-                    <Route
-                        path="*"
-                        element={<Navigate to="/" />}
-                    />
-                </Routes>
-            </Router>
-        
-    </div>
-  );
+   </>
+  
+    );
 }
 
 export default App;

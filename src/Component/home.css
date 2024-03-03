@@ -1,16 +1,22 @@
 
 
+
+
 .home{
     background-color: white;
     width: 100%;
     justify-content: start;
     display: flex;
-}
-.leftbar{
-    width: 60%;
-}
-
-@media screen and (max-width:600px) {
+  }
+  .leftbar{
+    width:fit-content;
+  }
+  
+  .insert-page{
+    margin: 0px 5%;
+    width: 50%;
+  }
+  @media screen and (max-width:600px) {
     
     .home{
         background-color: white;
@@ -25,4 +31,8 @@
         position: fixed;
         bottom: 0px;
     }
-}
+    .insert-page{
+      margin: 0px;
+      width: 100%;
+    }
+  }

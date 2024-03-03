@@ -19,6 +19,9 @@ height:40px;
 .hr{
     display: none;
 }
+#save{
+    margin:0px 50%;
+}
 @media screen and (max-width:600px) {
     #postcard{
         width:95%;
@@ -41,6 +44,9 @@ height:40px;
 
     .hr{
         display: block;
+    }
+    #save{
+        margin:0px 40%;
     }
     
 }

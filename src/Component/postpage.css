@@ -1,0 +1,12 @@
+.box{
+    background-color:silver;
+    color: black;
+}
+
+@media screen and (max-width:600px) {
+    
+    .box{
+        background-color: white;
+        color: black;
+    }
+}

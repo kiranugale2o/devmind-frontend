@@ -1,0 +1,27 @@
+.profile-box{
+    display:flex;
+    width:100%;
+    height:70px;
+    
+}
+#followbtn{
+margin:0px 35%;
+width:38%;
+height:40px;
+}
+
+
+@media screen and (max-width:600px) {
+    .profile-box{
+        display:flex;
+        width:100%;
+        height:70px;
+        
+    }
+    #followbtn{
+        margin:0px 35%;
+        width:38%;
+        height:30px;
+        }
+        
+}
