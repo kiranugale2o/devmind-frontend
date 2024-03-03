@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './postpage.css';
+import { NavLink } from "react-router-dom";
 
 export default function PostPage(){
 
@@ -20,9 +21,9 @@ export default function PostPage(){
     return(
         <>
           <div className="" style={{display:"flex",margin:"20px auto"}}>
-            
-            <button type="button" class="btn-close" aria-label="Close"></button>
-            
+            <NavLink to="/">
+            <button  type="button" class="btn-close" aria-label="Close"></button>
+            </NavLink>
             <div className="text-start h5" style={{margin:"auto 10px"}}>New Project</div>
            
         </div>
@@ -69,8 +70,13 @@ export default function PostPage(){
 </div>
 </div>
 </div>
+
          </div>
+        <div className="text-end">
+            <div className="btn btn-dark rounded-pill" style={{width:"30%"}}>Post</div>
+        </div>
          </div>
+       
         </>
         
     );

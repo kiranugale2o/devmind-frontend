@@ -30,7 +30,7 @@ export default function Home(){
                     </div>
                     <div className="insert-page">
                         <Routes>
-                            <Route path="/" element={<PostPage/>}/>
+                            <Route path="/" element={<Post/>}/>
                      <Route path="/findaa" element={<FindDeveloper/>}/>
                      <Route path="/postpage" element={<PostPage/>}/>
                      <Route path="/profile" element={<><h1>Profile page</h1></>}/>
