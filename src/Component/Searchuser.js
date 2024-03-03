@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "./searchuser.css";
 
 export default function Searchuser(){
+    const[btn,setBtn]=useState("follow");
     return(
 
         <>
@@ -13,7 +14,7 @@ export default function Searchuser(){
                 <div className="text h5">Username</div>
                 <div className="text h6">developers</div>
             </div>
-            <div className="btn btn-primary" id="followbtn"> Following</div>
+            <div className="btn btn-primary" id="followbtn" onClick={()=>{if(btn=="follow"){setBtn("Following");} else{ setBtn("follow")}}} >{btn}</div>
         </div>
 
         <br/>

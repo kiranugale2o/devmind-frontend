@@ -14,9 +14,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import Home from './Component/Home';
-import Post from './Component/Post';
-import FindDeveloper from './Component/FindDeveloper';
-import LeftNavbar from './Navbar/LeftNavbar';
+
 
 function App() {
   const pra=useParams();
@@ -31,8 +29,8 @@ function App() {
           <Route path='/profile' element={<>profile</>}/>
           <Route path='/findaa' element={<>find</>}/>
           <Route path='/postpage' element={<>Post</>}/>
-          <Route path='/activity' element={<>activity</>}/>
-
+          <Route exact path='/activity' element={<>activity</>}/>
+        
       </Route>
     </Routes>
     </BrowserRouter>

@@ -4,7 +4,8 @@ export default function Post(){
     return(
         <>
         <br></br>
-            <div className="card" id="postcard">
+            <div className="card border" id="postcard">
+   
   <div className="card-body">
     <div className="card-title" id="userinfo">
 <img className="rounded-circle" src="logo192.png" id="userimg"></img>
@@ -13,11 +14,12 @@ export default function Post(){
 
 </div>
     </div>
+    
+ 
     <div className="text h6">Line 40:3:  The href attribute requires a valid value to be accessible. Provide a valid, navigable address as the href value. If you cannot provide a valid href, but still need the element to resemble a link, use a button and change it with appropriate styles. Learn more: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md  jsx-a11y/anchor-is-valid</div>
     <img src="lossgo192.png" class="card-img-top" style={{width:"90%",height:"300px"}} alt="..."/>
   
     </div>
-     
     <br/>
     <div className="" style={{display:"flex"}}>
         <div className="like"  style={{margin:"0px 14px"}}><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">

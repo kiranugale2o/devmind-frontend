@@ -8,7 +8,7 @@ export default function FindDeveloper(){
             <div className="">
                 <input className="" placeholder="find Developer" style={{width:"98%",margin:"auto",height:"50px"}}></input>
              <br></br>
-             <br/>
+            <hr/>
               <Searchuser/>
               <Searchuser/>
               <Searchuser/>

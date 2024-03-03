@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import LeftNavbar from "../Navbar/LeftNavbar";
 import "./home.css"
-import Singup from "../AuthPages/Singup";
-import Post from "./Post";
+import PostPage from "../PostHandle/PostPage";
+import Post from "../PostHandle/Post";
 import FindDeveloper from "./FindDeveloper";
 import {
     BrowserRouter as Router,
@@ -14,9 +14,10 @@ import {
     
     BrowserRouter,
   } from "react-router-dom";
+import ActivityHandler from "./ActivityHandler";
+import Navbar from "../Navbar/Navbar";
+import UserProfile from "./UserProfile";
 
-import Login from "../AuthPages/Login";
-import PostPage from "./PostPage";
 export default function Home(){
 
     const ar=[1,2,2,2,2,2,2,2,2,2,2,]
@@ -30,12 +31,12 @@ export default function Home(){
                     </div>
                     <div className="insert-page">
                         <Routes>
-                            <Route path="/" element={<Post/>}/>
+                            <Route path="/" element={<>
+                            <Post/></>}/>
                      <Route path="/findaa" element={<FindDeveloper/>}/>
                      <Route path="/postpage" element={<PostPage/>}/>
-                     <Route path="/profile" element={<><h1>Profile page</h1></>}/>
-                     <Route path="/activity" element={<><h1>activity page</h1></>}/>
-                     
+                     <Route path="/profile" element={<UserProfile/>}/>
+                     <Route path="/activity" element={<ActivityHandler/>}/>
                      </Routes>
                       
                           

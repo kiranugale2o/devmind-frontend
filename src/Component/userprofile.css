@@ -1,0 +1,14 @@
+
+.userprofileimg{
+    position: absolute;
+    top: 16%;
+   left: 45%;
+}
+
+@media screen and (max-width:600px) {
+    .userprofileimg{
+       
+        top: 14%;
+        left: 75%;
+    }
+}
