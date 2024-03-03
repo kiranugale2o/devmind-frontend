@@ -11,7 +11,11 @@ color:white;
 width:38%;
 height:40px;
 }
-
+#followbtn:hover{
+         
+    background-color:gray;
+color:white;
+      }
 
 @media screen and (max-width:600px) {
     .profile-box{
@@ -25,5 +29,11 @@ height:40px;
         width:38%;
         height:40px;
         }
+
+    #followbtn:hover{
+         
+    background-color:gray;
+color:white;
+      }
         
 }
