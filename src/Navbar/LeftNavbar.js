@@ -17,7 +17,7 @@ export default function LeftNavbar(){
 <p className="text-center">Home</p> 
   </NavLink>
   <NavLink
-    to="findaa" 
+    to="find" 
     id="alink"
     className="list-group-item shadow-sm p-3 mb-1  rounded" style={{display:"flex"}} >
     <svg xmlns="http://www.w3.org/2000/svg" id="icons" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

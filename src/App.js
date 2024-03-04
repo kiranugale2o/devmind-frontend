@@ -14,6 +14,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import Home from './Component/Home';
+import CommentHandle from './PostHandle/CommentHandle';
 
 
 function App() {
@@ -25,13 +26,16 @@ function App() {
    <BrowserRouter>
     <Routes>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/singup' element={<Singup/>}/>
       <Route path='/' element={<Home/>}>
-          <Route path='/profile' element={<>profile</>}/>
-          <Route path='/findaa' element={<>find</>}/>
-          <Route path='/postpage' element={<>Post</>}/>
-          <Route exact path='/activity' element={<>activity</>}/>
-        
+      <Route path='/profile'/>
+          <Route path='/find' />
+          <Route path='/postpage'/>
+          <Route exact path='/activity'/>
+            
       </Route>
+    
+    
     </Routes>
     </BrowserRouter>
    

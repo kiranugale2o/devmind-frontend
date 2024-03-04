@@ -16,7 +16,9 @@ import {
   } from "react-router-dom";
 import ActivityHandler from "./ActivityHandler";
 import Navbar from "../Navbar/Navbar";
-import UserProfile from "./UserProfile";
+
+import CommentHandle from "../PostHandle/CommentHandle";
+import UserProfile from "./userProfile.js"; 
 
 export default function Home(){
 
@@ -31,13 +33,15 @@ export default function Home(){
                     </div>
                     <div className="insert-page">
                         <Routes>
-                            <Route path="/" element={<>
-                            <Post/></>}/>
-                     <Route path="/findaa" element={<FindDeveloper/>}/>
+                            <Route path="/" element={<Post/>}/>
+                     <Route path="/find" element={<FindDeveloper/>}/>
                      <Route path="/postpage" element={<PostPage/>}/>
-                     <Route path="/profile" element={<UserProfile/>}/>
+                   
+                     <Route path="profile" element={<UserProfile/>}/>
+                  
                      <Route path="/activity" element={<ActivityHandler/>}/>
-                     </Routes>
+                   
+                       </Routes>
                       
                           
                         
