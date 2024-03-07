@@ -10,8 +10,8 @@ export default function UserProfile(props){
         <div className="profile" style={{display:"block",width:"90%",margin:"20px auto"}}>
             <div className="user" style={{display:"flex"}}>
                 <div className="userinfo" style={{display:"block"}}>
-                    <div className="name h3">{props.user.Name}</div>
-                    <div className="username bold">{props.user._id}</div>
+                    <div className="name h3">props.user.Name</div>
+                    <div className="username bold">props.user._id</div>
                 </div>
                 <div className="userprofileimg" style={{width:"20%"}}>
                     <img src="profiledp.jpg" className=" rounded-circle"  width={60} height={60} alt=""/>
