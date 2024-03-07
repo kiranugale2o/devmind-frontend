@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import './userprofile.css';
 import Post from "../PostHandle/Post";
-import { Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
 import CommentHandle from "../PostHandle/CommentHandle";
-export default function UserProfile(){
+export default function UserProfile(props){
+    const[edit,setEdit]=useState(false);
     return(
         <>
         <div className="profile" style={{display:"block",width:"90%",margin:"20px auto"}}>
             <div className="user" style={{display:"flex"}}>
                 <div className="userinfo" style={{display:"block"}}>
-                    <div className="name h3">Kiran Ugale</div>
-                    <div className="username bold">_Kiran_patil_41</div>
+                    <div className="name h3">{props.user.Name}</div>
+                    <div className="username bold">{props.user._id}</div>
                 </div>
                 <div className="userprofileimg" style={{width:"20%"}}>
                     <img src="profiledp.jpg" className=" rounded-circle"  width={60} height={60} alt=""/>
@@ -34,13 +35,14 @@ export default function UserProfile(){
             </div>
 
             <div className="d-flex p-3" style={{width:"90%",margin:"auto",justifyContent:"space-between"}}>
-                <div className="btn " style={{backgroundColor:"black",color:"white",width:"45%",fontWeight:"600"}}>Edit profile</div>
+                <div className="btn " onClick={()=>{setEdit(!edit)}} style={{backgroundColor:"black",color:"white",width:"45%",fontWeight:"600"}}>Edit profile</div>
                 <div className="btn" style={{backgroundColor:"black",color:"white",width:"45%",fontWeight:"600"}}>share profile</div>
                 
             </div>
 
             <hr/>
 
+            
             {/* Post section */}
 
             <div className="text-center h4 ">your posts</div>
@@ -49,6 +51,38 @@ export default function UserProfile(){
             
             </div>
         </div>
+{edit?
+        <div className="edit-part">
+            <div className="d-flex p-3" style={{justifyContent:"space-between",width:"95%"}}>
+            <div className="text-start h5">Edit profile</div>
+           
+            <button  type="button" onClick={()=>setEdit(false)} style={{fontSize:"20px",color:"white" ,backgroundColor:"white"}} class="btn-close" aria-label="Close"></button>
+          
+            </div>
+            <div className="get-inputs" style={{width:"80%",margin:"10% auto",justifyContent:"space-evenly"}}>
+               <form>
+                <input type="text" placeholder="Name" className="form-control"/>
+                <br/>
+                <input type="text" placeholder="username" className="form-control"/>
+                <br/>
+                <input type="text" placeholder="Bio" className="form-control"/>
+                <br/>
+                <input type="text" placeholder="Links" className="form-control"/>
+                <br/>
+                <button type="submit" className="btn btn-dark">Update</button>
+                </form>
+            </div>
+           </div>
+
+:<></>}
         </>
     )
 }
+
+  const EditProfile=()=>{
+    return(
+        <>
+           
+        </>
+    )
+  }

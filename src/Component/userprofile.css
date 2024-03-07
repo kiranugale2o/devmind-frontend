@@ -5,10 +5,26 @@
    left: 45%;
 }
 
+.edit-part{
+width: 30%;
+top: 15%;
+margin: auto 50%;
+       position: fixed;
+       background-color:black;
+       color: white;
+       height: 400px;
+}
 @media screen and (max-width:600px) {
     .userprofileimg{
        
         top: 14%;
         left: 75%;
+    }
+    
+    .edit-part{
+       width: 100%;
+      top: 10%;
+      height: 100vh;
+        margin: auto;
     }
 }
