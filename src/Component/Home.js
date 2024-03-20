@@ -4,6 +4,7 @@ import "./home.css"
 import PostPage from "../PostHandle/PostPage";
 import Post from "../PostHandle/Post";
 import FindDeveloper from "./FindDeveloper";
+import axios from "axios";
 import {
     BrowserRouter as Router,
     Routes,
@@ -21,14 +22,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function Home(){
       const[user,setUser]=useState({});
+      const[posts,setPost]=useState([]);
       const navigate=useNavigate();
       const auth=async()=>{
 
         fetch("/user/auth",{
          method:"GET",
          headers:{
-       
-            "Content-Type":"application/json"
+             "Content-Type":"application/json"
          },
          credentials:"include",
         }).then((res)=>{
@@ -43,10 +44,24 @@ export default function Home(){
             })
            })
       }
-
-      useEffect(()=>{
-        auth();
-      },[])
+      const getpost=async()=> {
+        const res=await fetch('/user/getpost', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+             },
+           }) 
+        const data= await res.json();
+    // console.log(data.data)
+    setPost(data.data)
+    }
+    
+    
+    
+    useEffect(()=> {
+            auth();
+           getpost();
+        },[])
     
     return(
         <>
@@ -57,13 +72,19 @@ export default function Home(){
                     </div>
                     <div className="insert-page">
                         <Routes>
-                            <Route path="/" element={<Post/>}/>
-                     <Route path="/find" element={<FindDeveloper/>}/>
-                     <Route path="/postpage" element={<PostPage/>}/>
+                            <Route path="/" element={<>{
+                              posts.map((d)=> {
+                                return <Post data={d} user={user} />
+                              
+                            })
+
+                            }</>}/>
+                     <Route path="/find" element={<FindDeveloper />}/>
+                     <Route path="/postpage" element={<PostPage user={user}/>}/>
                    
                      <Route path="profile" element={<UserProfile user={user}/>}/>
                   
-                     <Route path="/activity" element={<ActivityHandler/>}/>
+                     <Route path="/activity" element={< ActivityHandler user={user}/>}/>
                    
                        </Routes>
                       

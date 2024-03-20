@@ -1,31 +1,59 @@
 import React, { useState } from "react";
 import './postpage.css';
 import { NavLink } from "react-router-dom";
+import { imageHandler ,videoSender} from "../AuthPages/firebase";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  
 
-
-export default function PostPage(){
-
-    const[row,setRow]=useState(1);
-    const handleInput=(e)=>{
-        e.preventDefault();
-    const len=e.target.value;
-   
-        if(len.length>45){
-            setRow(2)
-        }
-        if(len.length>80){
-            setRow(4)
-        }
-        
-        
-    }
-
-    const imgSender=(event)=>{
-      
+export default function PostPage(props){
+ 
+    const[row,setRow]=useState(3);
+    const[textdata,setText]=useState("");
+    const[userImg,setImg]=useState("");
+    const[imgdata,setIData]=useState("");
+    const[ishow,setIshow]=useState("none")
     
+        
+    
+
+    const imgSender=async(event)=>{
+      const data=event.target.files[0];
+      const url=await imageHandler(data);
+      setImg(url);
+      setIData(url);
+      setIshow("block")
+      toast.warning("wait a minutes")
     }
+
+     const postSender=async(e)=>{
+
+      e.preventDefault();
+       
+       const post={
+        userId:props.user._id,
+        userName:props.user.userName,
+        userImg:props.user.userImg,
+        description:textdata,
+        img:userImg
+       }
+      fetch('/user/sendpost',{
+        method:"post",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify(post)
+      }).then((res)=>{res.json().then((data)=>{
+        console.log(data)
+        toast.success("post send Successfuly")
+        // window.location.reload();
+      })
+      })
+     }
+   
     return(
         <>
+
           <div className="" style={{display:"flex",margin:"20px auto"}}>
             <NavLink to="/">
             <button  type="button" class="btn-close" aria-label="Close"></button>
@@ -35,14 +63,20 @@ export default function PostPage(){
         </div>
         <hr/>
         {/* post creating part */}
-         <div className="box" style={{width:"100%",margin:"-10px 0px"}}>
+        <form onSubmit={postSender}>
+         <div className="box border" style={{width:"100%",margin:"-10px 0px"}}>
          <div className="user" style={{display:"flex",width:"100%"}} >
             <div className="userimg" >
-                <img src="logo192.png" width={50} height={50} alt=""/>
+                <img src={props.user.userImg}  className="rounded-pill" width={50} height={50} alt=""/>
             </div>
             <div className="" style={{display:"block",width:"100%"}}>
-            <div className="text-start h5 p-1">Username </div>
-            <textarea class="form-control" placeholder="about your projects...." style={{width:"100%",border:"none",color:"black"}} id="commenmt"  rows={row} onChange={handleInput}   ></textarea>
+            <div className="text-start h5 p-1">{props.user.userName}</div>
+            <textarea name="dec" class="form-control" onChange={(e)=>setText(e.target.value)} value={textdata}  placeholder="about your projects...." style={{width:"100%",border:"none",color:"black"}} id="commenmt"  rows={row}    ></textarea>
+           <div className="post-data" style={{width:"100%",display:"flex",margin:"auto",justifyContent:"space-between"}}>
+           <img src={imgdata}  alt="" style={{width:"45%",display:`${ishow}`}}/>
+          
+           </div>
+          
           {/* Sendind data */}
             <div className="send-data" style={{display:"flex",width:"30%",justifyContent:"space-between",margin:"10px"}}>
       <div className="img-with-icon" style={{display:"flex"}}>
@@ -54,17 +88,6 @@ export default function PostPage(){
 </label>
 <input type="file" name="image" style={{display:"none"}} onChange={imgSender} id="inimg"></input>
 </div>
-
-<div className="video-with-icon" style={{display:"flex"}}>
-  <label htmlFor="inv">
-<svg  xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-file-earmark-play-fill" viewBox="0 0 16 16">
-  <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6 6.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V6.884z"/>
-
-</svg>
-</label>
-<input type="file" accept="video/*" style={{width:"0px"}} id="inv" /> 
-</div>
-
 <div className="hashtag-with-icon" style={{display:"flex"}}>
   <label htmlFor="inh">
   <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-hash" viewBox="0 0 16 16">
@@ -75,13 +98,15 @@ export default function PostPage(){
 {/* <input type="text" accept="hash" style={{width:"0px"}} id="inv" />  */}
 </div>
 </div>
+
 </div>
 
          </div>
         <div className="text-end">
-            <div className="btn btn-dark rounded-pill" style={{width:"30%"}}>Post</div>
+            <button type="submit" className="btn btn-dark rounded-pill"  style={{width:"20%"}}>Post</button>
         </div>
          </div>
+         </form>
        
         </>
         

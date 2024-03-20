@@ -4,19 +4,8 @@ import { NavLink} from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes,getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
-const firebaseConfig = {
-  apiKey: "AIzaSyCNuaXI45NhX6jwb01xtfEDguKJiBkeWY4",
-  authDomain: "relaxo-social.firebaseapp.com",
-  projectId: "relaxo-social",
-  storageBucket: "relaxo-social.appspot.com",
-  messagingSenderId: "919379973745",
-  appId: "1:919379973745:web:74c233ac9df6badf706dd0"
-};
-// Initialize Firebase
-initializeApp(firebaseConfig)
-
-// Create a root reference
-const storage = getStorage();
+import axios from "axios";
+import {imageHandler} from "./firebase";
 
 export default function Singup(){
        const navigate=useNavigate();
@@ -28,24 +17,13 @@ export default function Singup(){
        const[userImg,setImg]=useState("");
        const[language,setLang]=useState("");
        
-        const imageHandler=async()=>{
-           
-            const mountainsRef = ref(storage,`postimg/${userImg.name}` );
-
-            // Create a reference to 'images/mountains.jpg'
-            const mountainImagesRef = ref(storage, `postimg/${userImg}`);
-             uploadBytes(mountainsRef,userImg).then(()=>{
-            getDownloadURL(ref(storage, `postimg/${userImg.name}`)).then((url)=>{
-           setImg(url);
-  })
-  
- })
-        }
-
+       
        const handleInput=async(e)=>{
        e.preventDefault();
-
-       imageHandler();
+       console.log(userImg)
+       const url=await imageHandler(userImg);
+       setImg(url);
+       console.log(url)
          const user={
              Name,
              userName,
@@ -57,14 +35,16 @@ export default function Singup(){
             
          }
         
-         fetch("/user/singup",{
+         fetch("user/singup",{
             headers:{
                 "Content-Type":"application/json"
             },
             method:"POST",
             body:JSON.stringify(user),
          }).then((res)=>res.json()).then((data)=>{console.log(data); navigate("/")})
-
+         .catch((e)=>{
+            console.log("error"+e)
+         })
 
        }
     return(
@@ -84,7 +64,8 @@ export default function Singup(){
                     <br/>
                     <input type="text" value={bio} onChange={(e)=>setBio(e.target.value)} class="form-control border border-secondary-subtle" style={{width:"90%",margin:"auto"}} id="exampleFormControlInput1" placeholder="About You"/>
                     <br/>
-                     <input type="file" onChange={(e)=>setImg(e.target.files[0])}   class="form-control border border-secondary-subtle" style={{width:"90%",margin:"auto"}} id="exampleFormControlInput1" placeholder="your profile"/>
+                     <input type="file" name="img" onChange={(e)=>{
+                        setImg(e.target.files[0]);}}  class="form-control border border-secondary-subtle" style={{width:"90%",margin:"auto"}} id="exampleFormControlInput1" placeholder="your profile"/>
                    
                     <br/>
                     <input type="text" value={language} onChange={(e)=>setLang(e.target.value)} class="form-control border border-secondary-subtle" style={{width:"90%",margin:"auto"}} id="exampleFormControlInput1" placeholder="which programming language we learn"/>

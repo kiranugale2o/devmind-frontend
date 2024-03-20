@@ -8,8 +8,12 @@
 margin:0px 35%;
 background-color:black;
 color:white;
-width:38%;
+position: absolute;
+left: 10%;
+right: auto;
 height:40px;
+width:10%;
+
 }
 #followbtn:hover{
          
@@ -24,9 +28,15 @@ color:white;
         height:70px;
         
     }
+    .user-info{
+        width: 100%;
+    }
     #followbtn{
-        margin:0px 30%;
-        width:38%;
+    
+        width:auto;
+        position: absolute;
+        left: 30%;
+        right: auto;
         height:40px;
         }
 

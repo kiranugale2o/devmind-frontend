@@ -1,19 +1,41 @@
 import React, { useState } from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink, json} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default function Login(){
-
-    const [uname,setUname]=useState("");
+    const navigate=useNavigate();
+    const [userName,setUname]=useState("");
     const[password,setPass]=useState("");
 
     const handleLogin=async(e)=>{
      
        e.preventDefault();
        const user={
-        uname,
+        userName,
         password
        }
 
-       console.log(user);
+       fetch('https://backendofdevmind-1.onrender.com/user/login',{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(user)
+       }).then((res)=>res.json().then((data)=>{
+          if(res.status===200){
+            
+            if(data.status===0){
+                navigate('/')
+            }else{
+                console.log(data.message)
+                alert(data.message)
+            }
+              
+          }else{
+            console.log("ss"+data)
+          }
+
+       } ))
+         
     }
     return(
         <>
@@ -21,7 +43,7 @@ export default function Login(){
                 <form  style={{display:"block"}} autoComplete="off" onSubmit={handleLogin}  >
                     <div className="text-center h3" style={{margin:"10px auto",fontWeight:"500"}}>Login</div>
                     <br/>
-                    <input type="text" value={uname} onChange={(e)=>setUname(e.target.value)} class="form-control border border-secondary-subtle" style={{width:"90%",margin:"auto"}} id="exampleFormControlInput1" placeholder="Username"/>
+                    <input type="text" value={userName} onChange={(e)=>setUname(e.target.value)} class="form-control border border-secondary-subtle" style={{width:"90%",margin:"auto"}} id="exampleFormControlInput1" placeholder="Username"/>
                      <br/>
                     <input type="password" value={password} onChange={(e)=>setPass(e.target.value)} class="form-control border border-secondary-subtle" style={{width:"90%",margin:"auto"}} id="exampleFormControlInput1" placeholder="password"/>
                     <br/>
